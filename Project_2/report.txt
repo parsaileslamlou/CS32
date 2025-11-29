@@ -1,0 +1,70 @@
+CSCI Project 2 - TaskList
+==========================
+
+Student Name: Parsa Ileslamlou
+Date: 10/31/25
+
+Design Description:
+-------------------
+
+I have implemented a doubly linked list with a head and tail Node pointer. These nodes each have std::string task, a prev (previous) node, and next node. When a TaskList is constructed its head and tail nodes are set to nullptr, and the listSize variable is set to 0. I also ensured for each function in TaskList that our list wasn't empty (by seeing if head != nullptr) then doing whatever the function was meant to do. I also checked for self assignment in the copy assignment operator, and made sure to preform a deep copies in both the copy assignment operator and copy constructor. Futhermore, all correct steps were taken to ensure no memory leak while making sure no dangling pointers were left.
+
+Pseudocode:
+-----------
+
+void TaskList::addBack(const std::string& task):
+    In this function I created a new temp node that had its' task set the new task, its next node set to nullptr(becuase it's the last node) and a prev node to the old tail. If the list was empty i set head to this newNode. Otherwise, I found the tail node and set it's next node to the newNode and then tail to the newNode.
+
+Copy Assignment Operator:
+    In this function I checked first check for self assignment. If the lists aren't the same I clear the new list and deepy copy the new one (by calling a helper function)
+
+Copy Constructor:
+    In this function I just deep copied the other list into 'this' list.(by calling a helper function)
+
+bool RemoveFront():
+    In this function I first check if theres an empty list. If the list isn't empty I decrement listSize by 1 then set head to the next node and delete the former head node.
+
+bool TaskList::get(int pos, std::string& task) const:
+    In this function I first check if the given position is invalid or if the list is empty. If it’s invalid, I return false. Otherwise, I iterate through the list until I reach the node at the given position. If I find a valid node, I set the output string task to that node’s task value and return true. If no valid node is found I return false.
+    
+int TaskList::find(const std::string& task) const:
+    In this function I iterate through the list  starsting from the head, keeping track of index counter. For each node, I check if its task matches the given task string. If I find a match, I return the current index. If I reach the end of the list without finding a match, I return -1.
+
+void TaskList::clear():
+    In this function I clear all nodes from the list to free memory. I do this by calling the helper function freeList(), which handles deleting every node and resetting the head, tail, and list size.
+    
+void TaskList::printAll() const:
+    In this function I print every task in the list to the standard error stream (cerr). If the list is empty, I simply return without printing anything. Otherwise, I iterate through each node starting from the head and print its task value on a new line.
+
+void TaskList::copyList(const TaskList& other):
+    In this function I perform a deep copy of another list into the current one. I start by resetting the head, tail, and list size to represent an empty list. If the other list is not empty, I create a new first node using the other list’s head, then iterate through the rest of the other list, creating new nodes and linking them one by one. After copying all nodes, I set the tail pointer and update the list size to match the other list.
+
+void TaskList::freeList():
+    In this function I delete all nodes in the list to prevent memory leaks. I iterate through each node, deleting them one at a time while moving the head pointer to the next node. After all nodes are deleted, I set both the head and tail to nullptr and reset the list size to zero.
+
+TaskList::Node TaskList::getNode(int pos) const:
+    In this function I first check if the given position is invalid. If it’s out of range, I return nullptr. Otherwise, I start from the head and iterate through the list until I reach the node at that position. Once found, I return a pointer to that node.
+
+Test Cases:
+-----------
+(List and describe test cases you used to validate your implementation.)
+
+#1: Checking if list is empty on a newly made TaskList (should be empty)
+#2: Checking the size of a empty list (should be 0)
+#3: Removing element from a empty list (should return false)
+#4-7: Adding and element while testing if we can find that element and also check what happens when we search for a nonexisiting element, in addition I also check the size to see if it was updated accordingly
+#8: checking if get(int pos, std::string& task) const works as expected where temp = Task A
+    string temp;
+#9-11: removing element (only element) from list and checking size
+#12: Adding multiple elements to list and chedcking size. 
+#9: Using the get function on list when we have multiple entires
+#10-11 Searching for non-existant elements
+#13: Testing remove front on a multiple entry list while checking if the size is updating properly
+#14 finding elements that don't exist
+#15: Finding elements that are/are-not there
+#16: Testing copy constructor
+#17 Checking for deep copy
+#18: Testing Copy assignment operator
+#19: Checking for mistaken shallow copy
+#20: testing Clear
+

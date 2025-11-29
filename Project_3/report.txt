@@ -1,0 +1,13 @@
+Name: Parsa Ileslamlou
+-----------------------------------
+Completed: All Parts are completed and fully implemented
+-----------------------------------
+Incomplete: N/A
+-----------------------------------
+Test Cases Used:
+ - For each object I tested first tested the case sensitivity requirement. To do this I used the matchesKeyword function and chose a substring in the object to check.
+ - For each object I checked edge cases like empty strings and leading spaces
+ - Tested test cases spoke about in piazza where for example: "Bluetooth Speaker" , matchesKeyword( Speaker) == true and matchesKeyword(  Speaker) == false (two leading whitespaces)
+ - Checked that virtual methods are successfully called through their base pointers
+
+-----------------------------------

@@ -1,0 +1,53 @@
+Project 1: Blood Donation and Vacation Credit Management System
+
+By: Parsa Ileslamlou
+Date: 10/16/25
+
+
+
+Date.h / Date.cpp:
+
+    Date.h is a header file with a simple skeleton for the cpp file. It defines a struct for Date that has 3 parameters y,m,d which stand for the year, month, and day respectively. It also defines Dateutil namespace for easy identification when calling  Date functions.
+    Date.cpp has the functions parseISO, isValid, toSerial daysBetween, and same sameDay. All of which I implemented besides parseISO.
+        isValid(const Date& dt): Returns true if the given date represents a real calendar date, accounting for leap years and valid day ranges.
+        monthLen(const Date& dt): Returns the number of days in the month of the given date, adjusting for leap years in February.
+        daysBetween(const Date& a, const Date& b): Calculates and returns the number of days separating two valid dates.
+        toSerial(const Date& dt): Converts a given Date object into an integer “serial number” representing the total number of days since a fixed reference point (such as year 1), allowing easy comparison and subtraction between dates.
+        
+BloodDonation.h / BloodDonation.cpp:
+
+    BloodDonation.h as the Result namespace which has possible return results when given a BloodDonation as well as function prototypes and defines private member vairables.
+    BloodDonation.cpp has functions isSixDigits, constructor, accessors (id,age,weight,date) and validate.
+    isSixDigits(const std::string& s): A helper function that checks whether a given string contains exactly six digits, making it a valid id
+    BloodDonation::BloodDonation(...): A Constructor that initializes a blood donation record by setting ID, age, weight, and parsing the information into a Date object.
+    id() const: Returns the donor’s ID.
+    age() const: Returns the donor’s age in years.
+    weight() const: Returns the donor’s weight.
+    date() const: Returns the donation date as a Date object reference.
+    validate() const: Verifies that the donation’s fields meet all validation rules (proper ID format, age, weight, and a valid date), and returns a string like "OK" or an corresponding error code.
+
+VacationAccount.h / VacationAccount.cpp
+
+    VacationAccount.h has many private/public functions prototypes and defines many private varibales.
+    VacationAccount.cpp has functions VacationAccount (constructor), destructor (~VacationAccount), copy constructor, copy-assignment operator, ensureCapacity, clear, deepCopyFrom, id, balanceHours, size, at, and add.
+    MIN_INTERVAL_DAYS / HOURS_PER_DONATION: constants that define the minimum required days between accepted donations (180) and the vacation hours awarded per donation (4.0).
+    VacationAccount(const std::string& donorId): constructor that initializes an empty account for a given donor ID.
+    ~VacationAccount(): destructor that releases owned donation objects and the internal array by calling clear() avoiding memory leaks.
+    VacationAccount(const VacationAccount& other): copy constructor that performs a deep copy of another account’s donations and hours.
+    operator=(const VacationAccount& other): copy-assignment operator that clears current resources and deep-copies the another account, also ensures no self-assignment
+    ensureCapacity(int need): grows the internal pointer array to ensure at least 'need' capacity, copying existing pointers and initializing the new slots to nullptr.
+    clear(): deletes all stored BloodDonation objects, frees the array, and resets size, capacity, and hours to their initial values avodiing memory leaks.
+    deepCopyFrom(const VacationAccount& other): allocates a new array and deep-copies each BloodDonation from other, copying size, capacity, and hours.
+    id() const: returns the account’s donor ID string.
+    balanceHours() const: returns the total accumulated vacation hours for the account.
+    size() const: returns the number of accepted donations stored in the account.
+    at(int index) const: returns a pointer to the donation at the given index or nullptr if the index is out of bounds.
+    add(const BloodDonation& donation): adds a donation or throws an error from the Result namespace
+    
+    main.cpp:
+    
+        Uses assert to check possile test cases.
+
+WHAT WORKS:
+
+Using all of the asserts I can conclude everything works. As my code compiles correctly. To ensure/test this I went through the specs and tried to test possible cases that would result in errors/success. Psuedocode is provided to demonstrate what I was testing
