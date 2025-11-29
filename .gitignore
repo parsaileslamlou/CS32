@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Xcode
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+
+# Build products
+build/
+DerivedData/
