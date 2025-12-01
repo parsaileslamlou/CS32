@@ -28,7 +28,7 @@ This repository contains my implementations of  C++ projects for UCLA's CS 32 co
 
 ---
 
-### **Project 4: MiniHub Collections Tool** (To be implemented)
+### **Project 4: MiniHub Collections Tool** (merge sort and engine.cpp not yet fully implemented)
 - **Summary:** Fast collections management tool using **hash tables, binary search trees, and stable sorting algorithms**.  
 - **Key Skills:** Separate-chaining **hash tables**, BST insertion/deletion (leaf, one child, two children), **stable insertion & merge sort**, memory-safe C++ design, integration of multiple data structures.  
 - **Highlights:** Efficient lookups and ordered traversal, stable sorting, combined data structures for consistency, automated test runner verifying functionality.  
